@@ -27,28 +27,45 @@ const welcome = {
     title: 'React',
     greeting: 'Hey',
 }
-function App() {
+const App = () => {
     return (
         <div>
             <h1>My Road to React</h1>
 
-            <label htmlFor="search">Search: </label>
-            <input id = 'search' type='text'/>
+            <Search />
             <hr />
-            <ul>
-                {list.map(function (item){
-                    return (
-                        <li key={item.objectId}>
-                            <span><a href = {item.url}>{item.title}</a></span>
-                            <span>{item.author}</span>
-                            <span>{item.num_comments}</span>
-                            <span>{item.points}</span>
-                        </li>
-                    )
-                })}
-            </ul>
+            <List />
         </div>
     );
+}
+
+const Search = () => {
+    const handleChange = (event) =>{
+        console.log(event)
+        console.log(event.target.value)
+    }
+    return (
+        <label htmlFor="search">Search: </label>,
+        <input id='search' type='text' onChange={handleChange}/>
+    )
+}
+
+
+const List = () => {
+    return (
+        <ul>
+            {list.map((item) => {
+                return (
+                    <li key={item.objectId}>
+                        <span><a href={item.url}>{item.title}</a></span>
+                        <span>{item.author}</span>
+                        <span>{item.num_comments}</span>
+                        <span>{item.points}</span>
+                    </li>
+                )
+            })}
+        </ul>
+    )
 }
 
 export default App;
